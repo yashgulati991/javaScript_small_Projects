@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 800px;
+            height: 500px;
+            background-color: rgb(76, 76, 76);
+        }
+
+        .clients,
+        .projects,
+        .work {
+            width: 200px;
+            height: 300px;
+            background-color: bisque;
+            border: 2px solid blue;
+            margin-left: 10px;
+        }
+
+        #counter {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clients">
+            <h2>Clients</h2>
+            <div id="counter" data-target="4000"></div>
+        </div>
+        <div class="projects">
+            <h2> Projects</h2>
+            <div id="counter" data-target="3000"></div>
+        </div>
+        <div class="work">
+            <h2>work</h2>
+            <div id="counter" data-target="12000"></div>
+        </div>
+    </div>
+    <script>
+        const counters = document.querySelectorAll('#counter');
+        counters.forEach((counter) => {
+            counter.innerHTML = 0;
+            const updateCounter = () => {
+                const targetCount = +counter.getAttribute('data-target');
+                const startingCount =Number(counter.innerHTML);
+                const incr=startingCount+1;
+                if(startingCount<targetCount){
+                    counter.innerHTML =`${startingCount+incr}`;
+                    setTimeout(updateCounter,40);
+                }else{
+                    counter.innerHTML=targetCount;
+                //    alert("target  achieved")
+                }
+            }
+            updateCounter();
+        })
+    </script>
+</body>
+
+</html>

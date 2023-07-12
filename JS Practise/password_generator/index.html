@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Oswald:wght@500&family=PT+Sans&display=swap');
+
+        body {
+            background-color: black;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Oswald', sans-serif;
+            font-family: 'PT Sans', sans-serif;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            margin-top: 50px;
+            width: 500px;
+            height: 430px;
+            background-color: rgb(0, 0, 0);
+            justify-content: center;
+            align-items: center;
+            border: 4px solid green;
+        }
+
+        .input-user input {
+            outline: none;
+            background-color: rgb(255, 255, 255);
+            color: green;
+            border: none;
+            width: 400px;
+            height: 50px;
+            font-size: large;
+            margin-top: 20px;
+            margin-left: 45px;
+            border: 2px solid green;
+            border-radius: 5px;
+            font-size: larger;
+            text-decoration: solid;
+            font-weight: bold;
+        }
+
+        .input-user input::placeholder {
+            color: green;
+            padding-left: 5px;
+        }
+
+        #length {
+            color: rgb(215, 0, 0);
+            margin-left: 45px;
+            font-size: larger;
+            user-select: none;
+        }
+
+        #length input {
+            margin-left: 180px;
+            outline: none;
+        }
+
+        #uppercase {
+            color: rgb(255, 0, 0);
+            margin-left: 45px;
+            font-size: larger;
+            user-select: none;
+        }
+
+        #uppercase input {
+            margin-left: 180px;
+            outline: none;
+            width: 20px;
+            height: 20px;
+        }
+
+        #lowercase {
+            color: rgb(255, 0, 0);
+            margin-left: 45px;
+            font-size: larger;
+            user-select: none;
+        }
+
+        #lowercase input {
+            margin-left: 180px;
+            outline: none;
+            width: 20px;
+            height: 20px;
+        }
+
+        #symbols {
+            color: rgb(255, 0, 0);
+            margin-left: 45px;
+            font-size: larger;
+            user-select: none;
+        }
+
+        #symbols input {
+            margin-left: 197px;
+            outline: none;
+            width: 20px;
+            height: 20px;
+        }
+
+        #numbers {
+            color: rgb(255, 0, 0);
+            margin-left: 45px;
+            font-size: larger;
+            user-select: none;
+        }
+
+        #numbers input {
+            margin-left: 193px;
+            outline: none;
+            width: 20px;
+            height: 20px;
+        }
+
+        #btn {
+            width: 350px;
+            height: 50px;
+            margin-left: 65px;
+            margin-top: 20px;
+            outline: none;
+            font-size: larger;
+            border-radius: 5px;
+        }
+
+        #btn:hover {
+            background-color: green;
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                height: auto;
+            }
+
+            .input-user input {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            #length input {
+                margin-left: 0;
+            }
+
+            #uppercase input,
+            #lowercase input,
+            #symbols input,
+            #numbers input {
+                margin-left: 10px;
+            }
+
+            #btn {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="input-user">
+                <input type="text" placeholder="Your Password..." id="pass-box">
+            </div>
+            <p id="length">Password Length
+                <input type="number" name="" id="total-char" max="15" min="6" value="8" />
+            </p>
+            <p id="uppercase">Contains Uppercase
+                <input type="checkbox" name="" id="upper-case" class="checkBoxuse" />
+            </p>
+            <p id="lowercase">
+                Contains Lowercase
+                <input type="checkbox" name="" id="lower-case" checked class="checkBoxuse" />
+            </p>
+            <p id="numbers">
+                Contains Numbers
+                <input type="checkbox" name="" id="number1" class="checkBoxuse" />
+            </p>
+            <p id="symbols">
+                Contains Symbols
+                <input type="checkbox" name="" id="symbols1" class="checkBoxuse" />
+            </p>
+            <button id="btn" autofocus>
+                Generate <i class="fa-solid fa-lock fa-beat-fade fa-lg"></i>
+            </button>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/12fb9645a5.js" crossorigin="anonymous"></script>
+    <script>
+        // selectors 
+        const passBox = document.getElementById('pass-box');
+        const totalChar = document.getElementById('total-char');
+        const upperCaseCheckbox = document.getElementById('upper-case');
+        const lowerCaseCheckbox = document.getElementById('lower-case');
+        const numberCheckbox = document.getElementById('number1');
+        const symbolsCheckbox = document.getElementById('symbols1');
+        const generateBtn = document.getElementById('btn');
+
+        // generate password function
+        function generatePassword() {
+            const length = parseInt(totalChar.value);
+            const includeUpperCase = upperCaseCheckbox.checked;
+            const includeLowerCase = lowerCaseCheckbox.checked;
+            const includeNumbers = numberCheckbox.checked;
+            const includeSymbols = symbolsCheckbox.checked;
+
+            const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+            const numberChars = '0123456789';
+            const symbolChars = '!@#$%^&*()_-+=<>?/';
+
+            let chars = '';
+            let password = '';
+
+            if (includeUpperCase) {
+                chars += uppercaseChars;
+            }
+            if (includeLowerCase) {
+                chars += lowercaseChars;
+            }
+            if (includeNumbers) {
+                chars += numberChars;
+            }
+            if (includeSymbols) {
+                chars += symbolChars;
+            }
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                password += chars[randomIndex];
+            }
+
+            passBox.value = password;
+        }
+
+        // generate button event listener
+        generateBtn.addEventListener('click', generatePassword);
+    </script>
+</body>
+
+</html>

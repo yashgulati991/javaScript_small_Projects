@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password-hider</title>
+    <style>
+        body {
+            background-color: bisque;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+
+        .container {
+            width: 600px;
+            height: 200px;
+            background-color: rgb(128, 0, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pass input {
+            outline: none;
+            width: 400px;
+            height: 40px;
+            border: 2px solid rgb(97, 63, 0);
+            border-end-end-radius: 10px;
+            border-start-start-radius: 10px;
+        }
+
+        .fa-eye-slash {
+            cursor: pointer;
+        }
+
+        #confirmPassInput {
+            margin-top: 10px;
+        }
+
+        #confirmPassInput.no-match {
+            border: 2px solid red;
+        }
+
+        #confirmPassInput.match {
+            border: 2px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Password hider</h1>
+    <div class="container">
+
+        <div class="pass">
+            <input type="password" max="10" min="6" placeholder="Your pass..." autofocus>
+            <i id="eye1" class="fa-solid fa-eye-slash fa-xl" style="color: #a80032;"></i>
+
+
+            <div class="conf">
+                <input id="confirmPassInput" type="password" max="10" min="6" placeholder="Confirm your pass..."
+                    autofocus>
+                <i id="eye2" class="fa-solid fa-eye-slash fa-xl" style="color: #a80032;"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        const eyeIcon1 = document.querySelector("#eye1");
+        const eyeIcon2 = document.querySelector("#eye2");
+        const passwordInput = document.querySelector("input[type='password']");
+        const confirmPassInput = document.getElementById("confirmPassInput");
+
+        eyeIcon1.addEventListener("click", function () {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon1.classList.replace("fa-eye-slash", "fa-eye");
+            } else {
+                passwordInput.type = "password";
+                eyeIcon1.classList.replace("fa-eye", "fa-eye-slash");
+            }
+        });
+
+        eyeIcon2.addEventListener("click", function () {
+            if (confirmPassInput.type === "password") {
+                confirmPassInput.type = "text";
+                eyeIcon2.classList.replace("fa-eye-slash", "fa-eye");
+            } else {
+                confirmPassInput.type = "password";
+                eyeIcon2.classList.replace("fa-eye", "fa-eye-slash");
+            }
+        });
+
+        confirmPassInput.addEventListener("input", () => {
+            const password1 = passwordInput.value;
+            const confirmPassword = confirmPassInput.value;
+            if (password1 === confirmPassword) {
+                confirmPassInput.classList.remove("no-match");
+                confirmPassInput.classList.add("match");
+            } else {
+                confirmPassInput.classList.remove("match");
+                confirmPassInput.classList.add("no-match");
+            }
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/4a609b9fe2.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

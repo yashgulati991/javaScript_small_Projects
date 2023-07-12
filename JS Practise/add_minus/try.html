@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Changer</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+ .text-changer {
+  display: inline-block;
+  font-size: 24px;
+}
+
+.original-text {
+  display: inline-block;
+  perspective: 800px;
+  transition: transform 0.2s; /* Added transition property for smooth effect */
+}
+
+.original-text:hover {
+  animation: changeLetter 0.2s infinite linear; /* Changed animation properties */
+  cursor: pointer;
+}
+
+@keyframes changeLetter {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Add styles for each individual letter if desired */
+.original-text:nth-child(1) {
+  /* Styles for "y" */
+}
+
+.original-text:nth-child(2) {
+  /* Styles for "a" */
+}
+
+.original-text:nth-child(3) {
+  /* Styles for "s" */
+}
+
+.original-text:nth-child(4) {
+  /* Styles for "h" */
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="text-changer">
+    <span class="original-text">y</span>
+    <span class="original-text">a</span>
+    <span class="original-text">s</span>
+    <span class="original-text">h</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

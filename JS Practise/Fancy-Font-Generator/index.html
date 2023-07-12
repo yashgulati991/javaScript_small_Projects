@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Comforter&family=Finlandica:wght@600&family=Megrim&family=Montserrat:wght@100;500&family=Nosifer&family=Oswald:wght@500&family=PT+Sans&family=Pacifico&display=swap" rel="stylesheet">
+
+    <title>Fancy-font-Gen</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Finlandica:wght@600&family=Montserrat:wght@100;500&family=Oswald:wght@500&family=PT+Sans&display=swap');
+body{
+    background-color: rgb(117, 190, 255);
+}
+
+        .container h1 {
+            font-family: 'Finlandica', sans-serif;
+        }
+
+        .input-text input {
+            width: 700px;
+            height: 30px;
+            outline: none;
+            font-family: 'Finlandica', sans-serif;
+            border-radius: 5px;
+
+
+        }
+
+        .style-1,
+        .style-2,
+        .style-3,
+        .style-4,
+        .style-5 {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .style-1 h2 {
+            font-family: 'Pacifico', cursive;
+        }
+
+        .style-2 h2 {
+            font-family: 'Comforter', cursive;
+        }
+
+        .style-3 h2 {
+            font-family: 'Nosifer', cursive;
+        }
+
+        .style-4 h2 {
+            font-family: 'Bungee Hairline', cursive;
+           
+        }
+
+        .style-5 h2 {
+            font-family: 'Megrim', cursive;
+        }
+
+        .style-1 input {
+            font-family: 'Pacifico', cursive;
+            font-size: 1rem;
+        }
+
+        .style-2 input {
+            font-family: 'Comforter', cursive;
+            font-size: 2rem;
+        }
+
+        .style-3 input {
+            font-family: 'Nosifer', cursive;
+            font-size: 1rem;
+        }
+
+        .style-4 input {
+            font-family: 'Bungee Hairline', cursive;
+            font-weight: bolder;
+            font-size: 1rem;
+        }
+
+        .style-5 input {
+            font-family: 'Megrim', cursive;
+            font-weight: bolder;
+            font-size: 1rem;
+        }
+
+        .styles input {
+            width: 600px;
+            height: 40px;
+            margin-left: 40px;
+            outline: none;
+
+        }
+
+        .styles button {
+            width: 60px;
+            height: 40px;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            Fancy Font Generator
+        </h1>
+        <div class="input-text">
+            <input type="text" min="1" placeholder="Normal text goes here...">
+        </div>
+
+        <div class="styles">
+            <div class="style-1">
+                <h2>Pacifico</h2>
+                <input type="text">
+                <button>
+                    <i class="fa-solid fa-copy fa-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="styles">
+            <div class="style-2">
+                <h2>Comforter</h2>
+                <input type="text">
+                <button>
+                    <i class="fa-solid fa-copy fa-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="styles">
+            <div class="style-3">
+                <h2>Noisifier</h2>
+                <input type="text">
+                <button>
+                    <i class="fa-solid fa-copy fa-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="styles">
+            <div class="style-4">
+                <h2>Bungee Hairline</h2>
+                <input type="text">
+                <button>
+                    <i class="fa-solid fa-copy fa-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="styles">
+            <div class="style-5">
+                <h2>Megrim</h2>
+                <input type="text">
+                <button>
+                    <i class="fa-solid fa-copy fa-xl"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const inputText = document.querySelector('.input-text input');
+        const style1Input = document.querySelector('.style-1 input');
+        const style2Input = document.querySelector('.style-2 input');
+        const style3Input = document.querySelector('.style-3 input');
+        const style4Input = document.querySelector('.style-4 input');
+        const style5Input = document.querySelector('.style-5 input');
+
+        const style1Button = document.querySelector('.style-1 button');
+        const style2Button = document.querySelector('.style-2 button');
+        const style3Button = document.querySelector('.style-3 button');
+        const style4Button = document.querySelector('.style-4 button');
+        const style5Button = document.querySelector('.style-5 button');
+
+        style1Button.addEventListener('click', copyText);
+        style2Button.addEventListener('click', copyText);
+        style3Button.addEventListener('click', copyText);
+        style4Button.addEventListener('click', copyText);
+        style5Button.addEventListener('click', copyText);
+
+        function copyText(event) {
+            const button = event.target;
+            const input = button.previousElementSibling;
+            input.select();
+            document.execCommand('copy');
+        }
+
+        inputText.addEventListener('input', function () {
+            const text = this.value;
+            style1Input.value = text;
+            style2Input.value = text;
+            style3Input.value = text;
+            style4Input.value = text;
+            style5Input.value = text;
+        });
+    </script>
+    </script>
+    <script src="https://kit.fontawesome.com/4a609b9fe2.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

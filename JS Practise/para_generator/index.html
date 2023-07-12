@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(210, 202, 255);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+
+        .work {
+            display: flex;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .output {
+            width: 800px;
+            height: 400px;
+            border: 1px solid rgb(190, 190, 190);
+            background-color: white;
+            margin-left: 160px;
+            overflow: scroll;
+            user-select: all;
+        }
+
+        .input {
+            margin-left: 20px;
+        }
+
+        .gen-but {
+            margin-left: 40px;
+        }
+
+        .gen-but button {
+            width: 140px;
+            height: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="work">
+            <h1>
+                Paragraph Generator
+                <i class="fas fa-paragraph fa-2x" style="color: #0058f0;"></i>
+            </h1>
+
+            <div class="input">
+                <h3>Paragraphs</h3>
+                <input type="number" id="numberPara" max="15" min="1" value="1">
+            </div>
+            <div class="gen-but">
+                <button id="generateBtn">
+                    Generate
+                </button>
+            </div>
+
+        </div>
+        <div class="output"></div>
+    </div>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const output = document.querySelector('.output');
+        const numParas = document.getElementById('numberPara');
+        const paragraphs = [
+            `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore excepturi, aspernatur quod incidunt corrupti, earum veritatis maxime esse reiciendis sequi porro odio sed quidem hic quis qui iure. Nesciunt, suscipit aliquam nulla odio consequatur consequuntur sed cumque mollitia quaerat nihil veniam qui dolor, recusandae soluta modi natus magni quos. Velit maiores mollitia harum distinctio debitis eaque a expedita ipsam, suscipit sit deleniti eum rerum accusamus voluptatibus blanditiis doloribus laboriosam optio veritatis aliquam iste, quis error animi quaerat?`,
+            `Perspiciatis pariatur quibusdam enim autem explicabo! Illo, a, provident dolore explicabo sit dolorem hic placeat voluptatibus saepe dolorum quae eligendi repudiandae. Itaque exercitationem obcaecati atque, ipsam voluptatibus hic. Quas totam vitae consequuntur modi molestiae, natus ducimus. Architecto odio`,
+            `Alias provident deserunt cupiditate, sit vero ducimus quasi doloremque dignissimos. Earum eligendi quisquam autem, repellat voluptatum nesciunt dolor, cupiditate vero sunt maiores omnis voluptas optio illo sed ducimus veniam distinctio magni, fugit dicta eaque? Neque cumque excepturi, amet qui ipsa cum explicabo at nihil corporis consectetur! Iure, eaque numquam. Quia dolor quos magnam? Ullam veniam quos repudiandae enim quis praesentium, itaque facere sit minus tenetur molestias numquam cupiditate`,
+            `Accusantium eligendi alias quasi nam earum autem! Totam quibusdam suscipit repellendus ab porro obcaecati culpa et reiciendis recusandae, sed, amet neque cumque nobis tenetur. Deserunt vero maiores dolorem quam! Dolorum cupiditate dignissimos, dicta labore dolore asperiores excepturi quas, error, porro commodi sed! Incidunt, itaque. Est recusandae officia blanditiis soluta at, explicabo laboriosam repellendus? Labore deserunt fuga non amet nesciunt, accusantium reiciendis architecto natus laudantium doloremque consequuntur quibusdam mollitia dolorum numquam neque ut corrupti ratione unde! Asperiores, omnis! Voluptas esse mollitia saepe et cupiditate? Recusandae non, nemo commodi ab ipsum distinctio`,
+            `Dolores magnam tempora illum culpa. Doloribus iure aperiam cumque qui aut reprehenderit! Saepe dolorum non, atque sed, quasi porro nihil voluptatibus reiciendis quos soluta, ad perspiciatis! Sint quaerat, voluptates distinctio, nulla laboriosam consequatur velit mollitia esse unde aut hic neque itaque. Placeat maxime nihil, quibusdam suscipit impedit quod aspernatur nisi numquam recusandae. Odit, corrupti`,
+            `Nihil veniam tempora, odio, optio ipsam temporibus perspiciatis commodi at aliquam! Voluptatum dolore cupiditate debitis perspiciatis? Necessitatibus rerum possimus, accusamus aspernatur placeat facilis delectus sequi laborum nesciunt dolorum iste consectetur. Perspiciatis debitis ipsa nostrum quisquam fuga omnis, facilis eveniet modi sed animi in reprehenderit magni itaque neque corrupti, eligendi dicta, sint voluptates mollitia asperiores. Aperiam debitis reiciendis quos nulla expedita consequuntur sed`,
+            `Aut, accusamus dolorem aspernatur provident laboriosam nobis exercitationem, ex ipsum quam beatae eaque ea recusandae, modi vitae fugiat. Omnis odio, eius et eaque illum aliquam cumque a ullam impedit porro nulla, itaque, accusamus minima provident nam? Aliquam laudantium, voluptates numquam illum quae alias nihil fugiat, enim culpa magnam ipsum eligendi fuga quod, corrupti repudiandae dicta odio molestiae`,
+            `Laborum? Repudiandae quasi aperiam, esse id doloribus temporibus harum provident porro possimus placeat quia praesentium sunt eius exercitationem fuga consectetur laudantium omnis unde ullam molestias delectus laboriosam consequatur. Necessitatibus sunt facilis, ex, repellendus molestiae optio nihil praesentium inventore esse alias unde iure. Temporibus sunt sit repudiandae esse voluptates sed ex'`
+        ];
+
+        generateBtn.addEventListener('click', generateParagraphs);
+
+        function generateParagraphs() {
+            const numParagraphs = numParas.value;
+            output.innerHTML = '';
+            for (let i = 0; i < numParagraphs; i++) {
+                const paragraph = document.createElement('p');
+                const randomIndex = Math.floor(Math.random() * paragraphs.length);
+                paragraph.textContent = paragraphs[randomIndex];
+                output.appendChild(paragraph);
+            }
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/4a609b9fe2.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

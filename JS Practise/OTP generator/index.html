@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+
+        }
+        body{
+            background-color: lawngreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            background-color: azure;
+            width: 400px;
+            height: 400px;
+        }
+        .container input[type=text]{
+            width: 50px;
+            height: 50px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 2px;
+box-sizing: fixed;
+padding-left: 10px;
+            
+        }
+       
+        .container .input{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        }
+       
+        .btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        .btn button{
+            height: 40px;
+            width: 200px;
+            cursor: pointer;
+            background-color: aquamarine;
+            outline: none;
+            border: none;
+            box-shadow: 5px 5px 10px rgb(72, 72, 72);
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="main">
+        <div class="container">
+            <div class="input">
+        <span>
+            <input id="otp1" type="text" max="9" min="0">
+            <input id="otp2" type="text" max="9" min="0">
+            <input id="otp3"type="text" max="9" min="0">
+            <input id="otp4"type="text" max="9" min="0">
+        </span>
+        <br>
+    </div>
+    <div class="btn">
+        <button>
+            Generate OTP
+        </button>
+    </div>
+              
+        </div>
+       
+    </div>
+    <script>
+        const generate = document.querySelector('.btn');
+       
+        const generateOtp=()=>{
+            let otp = Math.floor(Math.random()*10000);
+            let otpDigits = otp.toString().padStart(4, '0');
+            document.getElementById('otp1').value = otpDigits[0];
+            document.getElementById('otp2').value = otpDigits[1];
+            document.getElementById('otp3').value = otpDigits[2];
+            document.getElementById('otp4').value = otpDigits[3];
+
+        }
+
+        generate.addEventListener('click',generateOtp);
+    </script>
+</body>
+
+</html>

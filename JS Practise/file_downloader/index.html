@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download button</title>
+    <style>
+        body {
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .btn {
+            width: 500px;
+            height: 80px;
+            outline: none;
+            border: none;
+        }
+
+        .btn span {
+            height: 80px;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <button class="btn" data-timer="5">
+            <span>
+                <i class="fa-solid fa-download fa-lg"></i>
+                Download files
+            </span>
+        </button>
+    </div>
+</body>
+<script>
+    const downloadButton = document.querySelector('.btn');
+    const fileLink = 'https://drive.google.com/uc?export=download&id=1ZHtl9x7cjgP6vQFLj5zZF99m9h4-LXhG';
+    let timer;
+    let isDownloading = false;
+
+    const initTimer = () => {
+        timer = downloadButton.dataset.timer;
+        downloadButton.classList.add("timer");
+        downloadButton.innerHTML = `Your download will start in ${timer} seconds`;
+        startCounter();
+    };
+
+    const startCounter = () => {
+        const counter = setInterval(() => {
+            if (timer > 0) {
+                timer--;
+                downloadButton.innerHTML = `Your download will start in ${timer} seconds`;
+            } else {
+                clearInterval(counter);
+                downloadButton.textContent = "Your file is downloading";
+                initiateDownload();
+            }
+        }, 1000);
+    };
+
+    const initiateDownload = () => {
+        if (!isDownloading) {
+            isDownloading = true;
+            setTimeout(() => {
+                window.location.href = fileLink;
+                downloadButton.textContent = "Downloaded";
+                isDownloading = false;
+            }, 100); 
+        }
+    };
+
+    downloadButton.addEventListener('click', initTimer);
+</script>
+<script src="https://kit.fontawesome.com/4a609b9fe2.js" crossorigin="anonymous"></script>
+
+</html>
